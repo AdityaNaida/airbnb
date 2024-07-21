@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Route</title>
+  </head>
+  <body>
+    <h1>Edit Route</h1>
+    <form action="/listings/<%=data.id%>?_method=PUT" method="post">
+      <input
+        type="text"
+        value="<%=data.title%>"
+        name="listing[title]"
+        required
+      /><br />
+      <textarea type="text" name="listing[description]" required>
+<%=data.description%></textarea
+      ><br />
+      <textarea name="listing[image]"><%=data.image%></textarea><br />
+      <input
+        type="text"
+        name="listing[price]"
+        value="<%=data.price%>"
+        required
+      /><br />
+      <input
+        type="text"
+        name="listing[location]"
+        value="<%=data.location%>"
+        required
+      /><br />
+      <input
+        type="text"
+        name="listing[country]"
+        value="<%=data.country%>"
+        required
+      /><br />
+      <button>Update</button>
+    </form>
+  </body>
+</html>
