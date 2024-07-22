@@ -1,5 +1,13 @@
+*{
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
 .navbar {
   height: 5rem;
+}
+
+.heading-h1{
+  font-size: 1.5rem;
+  margin: 1rem 0rem;
 }
 
 .navbar-brand {
@@ -12,4 +20,97 @@
 .navbar-collapse,
 .navbar-nav {
   background-color: #fff;
+}
+
+.f-info-links a{
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-links a:hover{
+  text-decoration: underline;
+}
+
+.f-info-links, .f-info-socials{
+  width: 100%;
+}
+
+
+
+.f-info-socials i{
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.f-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 8rem;
+  background-color: #ebebeb;
+  text-align: center;
+  gap: 1rem;
+}
+
+.card{
+  border: none !important;
+}
+
+.card > img{
+  height: 17rem;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.cards-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.card-body{
+  padding: 1rem 0rem !important;
+}
+
+.card-text{
+ font-weight: 400 !important;
+}
+
+.card-img-overlay{
+  opacity: 0;
+  transition: all ease .3s;
+}
+.card-img-overlay:hover{
+  opacity: .2;
+  background-color: white;
+}
+
+/* .card-text > b{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+} */
+
+.link{
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 1280px){
+  .cards-container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 1024px){
+
+}
+@media only screen and (max-width: 768px){
+  .cards-container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 640px){
+  .cards-container{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
