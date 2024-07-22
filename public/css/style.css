@@ -67,11 +67,11 @@ body{
   gap: 1rem;
 }
 
-.card{
+.listing-card{
   border: none !important;
 }
 
-.card > img{
+.listing-card > img{
   height: 17rem;
   width: 100%;
   border-radius: 1rem;
@@ -109,6 +109,25 @@ body{
 
 .link{
   text-decoration: none;
+}
+
+
+/* SHOW PAGE */
+
+.card{
+  border: none;
+}
+
+.btns{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.show-cards{
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media only screen and (max-width: 1280px){
