@@ -44,20 +44,25 @@ app.get("/listings", async (req, res) => {
   res.render("listings/index.ejs", { allListings });
 });
 
-app.post("/listings", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing
-    .save()
-    .then(() => {
-      console.log("New Listing Created");
-      res.redirect("/listings");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+
+// function wrapAsync(fn) {
+//   return function (req, res, next) {
+//     fn(req, res, next).catch((err)=> next(err))
+//   }
+// }
 
 //Create Route
+app.post("/listings", async (req, res, next) => {
+  try {
+    const newListing = new Listing(req.body.listing);
+    await newListing
+      .save()
+        res.redirect("/listings");
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get("/listings/new", (req, res) => {
   res.render("listings/new.ejs");
   // res.send("new ");
@@ -94,6 +99,10 @@ app.delete("/listings/:id", async (req, res) => {
 app.get("/", (req, res) => {
   res.send("Hello, I'm the root!");
 });
+
+app.use((err, req, res, next) => {
+  res.send("something went wrong")
+})
 
 app.listen(8080, () => {
   console.log("App listening at 8080");

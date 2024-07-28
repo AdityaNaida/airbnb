@@ -3,7 +3,7 @@
     <div class="row mt-3">
       <div class="col-md-8 offset-md-2">
     <h1 class="heading-h1">Edit Route</h1>
-    <form action="/listings/<%=data.id%>?_method=PUT" method="post">
+    <form action="/listings/<%=data.id%>?_method=PUT" method="post" novalidate class="needs-validation">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input
@@ -14,12 +14,18 @@
           class="form-control"
           required
         />
+        <div class="valid-feedback">
+          Title Looks good!
+        </div>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea type="text" name="listing[description]" required id="description" class="form-control">
   <%=data.description%></textarea
         >
+        <div class="invalid-feedback">
+          Please enter a short description
+        </div>
       </div>
       <div class="mb-3">
         <label for="url" class="form-label">Image Url</label>
@@ -37,6 +43,9 @@
           class="form-control"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a valid price
+        </div>
       </div>
       <div class="mb-3 col-md-8">
         <label for="country" class="form-label" >Country</label>
@@ -48,6 +57,9 @@
           id="country"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a valid country name
+        </div>
       </div>
       </div>
       
@@ -61,6 +73,9 @@
           class="form-control"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a valid location
+        </div>
       </div>
      
   
@@ -69,5 +84,6 @@
     </form>
     </div>
     </div>
+    <script defer src="/js/script.js"></script>
   </body>
 
