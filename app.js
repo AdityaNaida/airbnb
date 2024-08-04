@@ -12,14 +12,13 @@ const Review = require("./models/review.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
-const wrapAsync = require("./utils/wrapAsync.js")
+const wrapAsync = require("./utils/wrapAsync.js");
 
-
-const ExpressError = require("./utils/ExpressError.js")
+const ExpressError = require("./utils/ExpressError.js");
 
 const { listingSchema } = require("./schema.js");
 
-// const 
+// const
 
 main()
   .then(() => {
@@ -49,66 +48,81 @@ app.engine("ejs", ejsMate);
 // });
 
 const validateListening = (req, res, next) => {
-  const {error} = listingSchema.validate(req.body);
+  const { error } = listingSchema.validate(req.body);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, error)
+    throw new ExpressError(400, error);
   } else {
     next();
   }
-}
+};
 
 //Index Route
-app.get("/listings",wrapAsync(async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings });
-}));
-
-
-
+app.get(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find({});
+    res.render("listings/index.ejs", { allListings });
+  })
+);
 
 //Create Route
-app.post("/listings", validateListening, wrapAsync(async (req, res, next) => {
- 
-  const newListing = new Listing(req.body.listing);
-  await newListing
-      .save()
-        res.redirect("/listings");
-}))
+app.post(
+  "/listings",
+  validateListening,
+  wrapAsync(async (req, res, next) => {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+  })
+);
 
 app.get("/listings/new", (req, res) => {
   res.render("listings/new.ejs");
   // res.send("new ");
 });
+
 //Show Route
-app.get("/listings/:id", wrapAsync(async (req, res) => {
-  const { id } = req.params;
-  const data = await Listing.findById(id);
-  res.render("listings/show.ejs", { data });
-}));
+app.get(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const data = await Listing.findById(id);
+    res.render("listings/show.ejs", { data });
+  })
+);
 
 //Edit Route
-app.get("/listings/:id/edit", validateListening , wrapAsync(async (req, res) => {
-  const { id } = req.params;
-  const data = await Listing.findById(id);
-  res.render("listings/edit.ejs", { data });
-}));
+app.get(
+  "/listings/:id/edit",
+  validateListening,
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const data = await Listing.findById(id);
+    res.render("listings/edit.ejs", { data });
+  })
+);
 
 //Updated Route
-app.put("/listings/:id", wrapAsync( async (req, res) => {
-  const { id } = req.params;
-  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-  res.redirect(`/listings/${id}`);
-}));
+app.put(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    res.redirect(`/listings/${id}`);
+  })
+);
 
 //Destroy Route
 
-app.delete("/listings/:id", wrapAsync( async (req, res) => {
-  const { id } = req.params;
-  await Listing.findByIdAndDelete(id);
-  res.redirect("/listings");
-}));
-
+app.delete(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
+  })
+);
 
 //REVIEWS
 //POST ROUTE
@@ -120,10 +134,10 @@ app.post("/listings/:id/review", async (req, res) => {
   listing.review.push(newReview);
 
   await newReview.save();
-  await listing.save()
-  console.log(listing);
-  res.redirect("/")
-})
+  await listing.save();
+
+  res.redirect(`/listings/${listing._id}`);
+});
 
 app.get("/", (req, res) => {
   res.send("Hello, I'm the root!");
@@ -131,13 +145,13 @@ app.get("/", (req, res) => {
 
 app.all("*", (req, res, err) => {
   res.send(new ExpressError(404, "Page Not Found!"));
-})
+});
 
 app.use((err, req, res, next) => {
-  const { status = 500, message = "Internal Server Error!"} = err;
-  res.status(status).render("error.ejs", {err})
+  const { status = 500, message = "Internal Server Error!" } = err;
+  res.status(status).render("error.ejs", { err });
   // res.status(status).send(message);
-})
+});
 
 app.listen(8080, () => {
   console.log("App listening at 8080");
