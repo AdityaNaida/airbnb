@@ -22,9 +22,9 @@ const listingSchema = new Schema({
   review: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Review"
-    }
-  ]
+      ref: "Review",
+    },
+  ],
 });
 
 const Listning = mongoose.model("Listening", listingSchema);
