@@ -144,7 +144,7 @@ app.post(
     const listing = await Listing.findById(req.params.id);
     const newReview = new Review(req.body.review);
 
-    listing.review.push(newReview);
+    listing.reviews.push(newReview);
 
     await newReview.save();
     await listing.save();
