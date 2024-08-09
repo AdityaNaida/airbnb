@@ -1,13 +1,13 @@
-*{
+* {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
-body{
+body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.container{
+.container {
   flex: 1;
 }
 
@@ -15,7 +15,7 @@ body{
   height: 5rem;
 }
 
-.heading-h1{
+.heading-h1 {
   font-size: 1.5rem;
   margin: 1rem 0rem;
 }
@@ -26,7 +26,7 @@ body{
   font-weight: 600;
 }
 
-.add-btn{
+.add-btn {
   background-color: #ff385c;
   border: none;
 }
@@ -37,26 +37,25 @@ body{
   background-color: #fff;
 }
 
-.f-info-links a{
+.f-info-links a {
   text-decoration: none;
   color: #222222;
 }
-.f-info-links a:hover{
+.f-info-links a:hover {
   text-decoration: underline;
 }
 
-.f-info-links, .f-info-socials{
+.f-info-links,
+.f-info-socials {
   width: 100%;
 }
 
-
-
-.f-info-socials i{
+.f-info-socials i {
   font-size: 1.2rem;
   margin-right: 1rem;
 }
 
-.f-info{
+.f-info {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,36 +66,36 @@ body{
   gap: 1rem;
 }
 
-.listing-card{
+.listing-card {
   border: none !important;
 }
 
-.listing-card > img{
+.listing-card > img {
   height: 17rem;
   width: 100%;
   border-radius: 1rem;
 }
 
-.cards-container{
+.cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 
-.card-body{
+.card-body {
   padding: 1rem 0rem !important;
 }
 
-.card-text{
- font-weight: 400 !important;
+.card-text {
+  font-weight: 400 !important;
 }
 
-.card-img-overlay{
+.card-img-overlay {
   opacity: 0;
-  transition: all ease .3s;
+  transition: all ease 0.3s;
 }
-.card-img-overlay:hover{
-  opacity: .2;
+.card-img-overlay:hover {
+  opacity: 0.2;
   background-color: white;
 }
 
@@ -107,44 +106,41 @@ body{
   width: 100%;
 } */
 
-.link{
+.link {
   text-decoration: none;
 }
 
-
 /* SHOW PAGE */
 
-.card{
+.listing-card {
   border: none;
 }
 
-.btns{
+.btns {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-
-.show-cards{
+.show-cards {
   padding-left: 0;
   padding-right: 0;
 }
 
-@media only screen and (max-width: 1280px){
-  .cards-container{
+@media only screen and (max-width: 1280px) {
+  .cards-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media only screen and (max-width: 1024px){
-
+@media only screen and (max-width: 1024px) {
 }
-@media only screen and (max-width: 768px){
-  .cards-container{
+@media only screen and (max-width: 768px) {
+  .cards-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media only screen and (max-width: 640px){
-  .cards-container{
+@media only screen and (max-width: 640px) {
+  .cards-container {
     grid-template-columns: repeat(1, 1fr);
   }
 }

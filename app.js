@@ -135,7 +135,7 @@ app.delete(
 );
 
 //REVIEWS
-//POST ROUTE
+//POST REVIEW ROUTE
 
 app.post(
   "/listings/:id/review",
@@ -150,6 +150,15 @@ app.post(
     await listing.save();
 
     res.redirect(`/listings/${listing._id}`);
+  })
+);
+
+//DELETE REVIEW ROUTE
+
+app.delete(
+  "/listings/:id/reviews/:reviewId",
+  wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
   })
 );
 
