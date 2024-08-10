@@ -17,6 +17,7 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 
 const { listingSchema, reviewSchema } = require("./schema.js");
+const Listning = require("./models/listening.js");
 
 // const
 
@@ -159,6 +160,11 @@ app.delete(
   "/listings/:id/reviews/:reviewId",
   wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
+
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
   })
 );
 
